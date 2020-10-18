@@ -1,0 +1,22 @@
+openapi: 3.0.0
+info:
+  title: for-serverless-hello-telegram-bot
+  version: 1.0.0
+servers:
+  - url: HEREYOURURL
+paths:
+  /sayhello.png:
+    get:
+      x-yc-apigateway-integration:
+        type: object-storage
+        bucket: for-serverless-hello-telegram-bot
+        object: sayhello.png
+        presigned_redirect: false
+        service_account: IDYOURACCOUNT
+      operationId: static
+  /fshtb-function:
+    post:
+      x-yc-apigateway-integration:
+        type: cloud-functions
+        function_id: IDYOURFUNCTION
+      operationId: fshtb-function
